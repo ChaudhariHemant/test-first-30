@@ -1,24 +1,36 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Experience from './components/Experience'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import './App.css';
 
-export default function App(){
+// Import your pages
+// import Home from './pages/Home';
+// import About from './pages/About';
+import Miropage from './pages/Miropage'; // Your Miro embed page
+import Figma from './pages/Figma';
+import Github from './pages/Github';
+import Notion from './pages/Notion';
+import SemanticScholar from './pages/SemanticScholar';
+
+function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  )
+    <Router>
+      <Routes>
+        {/* Default route */}
+        <Route path="/" element={<Navigate to="/home" />} />
+
+        {/* Pages */}
+        {/* <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} /> */}
+        <Route path="/miro" element={<Miropage />} />
+        <Route path="/figma" element={<Figma />} />
+        <Route path="/github" element={<Github/>} />
+        <Route path="/notion" element={<Notion/>} />
+        <Route path="/semantic" element={<SemanticScholar />} />
+
+        {/* Catch-all for unknown routes */}
+        <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+      </Routes>
+    </Router>
+  );
 }
+
+export default App;
